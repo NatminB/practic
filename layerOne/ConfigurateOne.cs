@@ -1,5 +1,7 @@
 ﻿using layerOne.interfaces;
+using layerOne.models;
 using layerOne.repositories;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace layerOne
@@ -8,9 +10,10 @@ namespace layerOne
     {
         public static void CofigureDALServices(this IServiceCollection services)
         {
-            services.AddTransient<IUserRepository, UserRepository>();
-            services.AddTransient<IBookRepository, BookRepository>();
-            services.AddTransient<IRentRepository, RentRepository>();
+            services.AddDbContext<MyDbContext>(options =>
+                options.UseInMemoryDatabase("Library"));
+
+            services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
         }
     }
 }

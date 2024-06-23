@@ -8,7 +8,7 @@
         public string Author { get; set; }
         public DateTime YearOfPub { get; set; }
         public DateTime DateOfAdd { get; set; }
-        public DateTime DateOfCut { get; set;}
+        public DateTime? DateOfCut { get; set;}
         public List<Rent> Rents { get; set; }
     }
 }
