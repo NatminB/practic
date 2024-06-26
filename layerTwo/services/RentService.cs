@@ -19,6 +19,12 @@ public class RentService: IRentService
         _mapper = mapper;
     }
 
+    public async Task<IEnumerable<RentDTO>> GetAll()
+    {
+        var rents = await _rentRepository.GetAllAsync();
+        return _mapper.Map<IEnumerable<RentDTO>>(rents);
+    }
+
     public async Task<RentDTO> StartRentAsync(int bookId, int userId, DateTime date)
     {
         var book = await _bookRepository.GetByIdAsync(bookId);

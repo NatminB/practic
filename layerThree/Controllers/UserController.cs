@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace layerThree.Controllers
 {
+    [Route("/User/")]
+    [ApiController]
     public class UserController : Controller
     {
         private IUserService _userService;
@@ -37,8 +39,7 @@ namespace layerThree.Controllers
             {
                 return BadRequest();
             }
-            var users = await _userService.GetAllUsersAsync();
-            var user = users.FirstOrDefault(x => x.UserId == item.UserId);
+            var user = await _userService.GetUserByIdAsync(item.UserId);
             if (user is null)
             {
                 return NotFound();
