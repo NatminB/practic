@@ -8,7 +8,7 @@ namespace layerOne
 {
     public static class ConfigurateOne
     {
-        public static void CofigureDALServices(this IServiceCollection services)
+        public static void ConfigureDALServices(this IServiceCollection services)
         {
             services.AddDbContext<MyDbContext>(options =>
                 options.UseInMemoryDatabase("Library"));

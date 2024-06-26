@@ -6,6 +6,6 @@ namespace layerTwo.profiles
 {
     public class RentProfile: Profile
     {
-        RentProfile() { CreateMap<Rent, RentDTO>().ReverseMap(); }
+        public RentProfile() { CreateMap<Rent, RentDTO>().ReverseMap(); }
     }
 }

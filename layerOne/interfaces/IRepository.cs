@@ -5,8 +5,8 @@ namespace layerOne.interfaces
 {
     public interface IRepository<T> where T : class
     {
-        Task<IEnumerable<T>> GetAllAsync(params Expression<Func<User, object>>[] includes);
-        Task<T> GetByIdAsync(int id);
+        Task<IEnumerable<T>> GetAllAsync(params Expression<Func<T, object>>[] includes);
+        Task<T> GetByIdAsync(int id, params Expression<Func<T, object>>[] includes);
         Task<bool> AddAsync(T entity);
         Task UpdateAsync(T entity);
         Task DeleteAsync(int id);

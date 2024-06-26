@@ -2,8 +2,12 @@
 
 namespace layerTwo.Interfaces
 {
-    public interface IBookService: IService<BookDTO>
+    public interface IBookService
     {
-        Task TakeOff(BookDTO book);
+        Task<IEnumerable<BookDTO>> GetAllBooksAsync();
+        Task<bool> AddBookAsync(BookDTO bookDTO);
+        Task DeleteBookAsync(int bookId);
+        Task UpdateBookAsync(BookDTO bookDTO);
+        Task CutBookAsync(int bookId);
     }
 }

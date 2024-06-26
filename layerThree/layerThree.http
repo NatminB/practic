@@ -1,0 +1,6 @@
+@layerThree_HostAddress = http://localhost:5258
+
+GET {{layerThree_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

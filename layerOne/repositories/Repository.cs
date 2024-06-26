@@ -14,7 +14,7 @@ namespace layerOne.repositories
             _context = dbContext;
             _dbSet = _context.Set<T>();
         }
-        public virtual async Task<IEnumerable<T>> GetAllAsync(params Expression<Func<User, object>>[] includes)
+        public virtual async Task<IEnumerable<T>> GetAllAsync(params Expression<Func<T, object>>[] includes)
         {
             IQueryable<T> query = _dbSet.AsQueryable();
 
@@ -28,8 +28,18 @@ namespace layerOne.repositories
 
             return await query.ToListAsync();
         }
-        public virtual async Task<T> GetByIdAsync(int id)
+        public virtual async Task<T> GetByIdAsync(int id, params Expression<Func<T, object>>[] includes)
         {
+            IQueryable<T> query = _dbSet.AsQueryable();
+
+            if (includes != null && includes.Any())
+            {
+                foreach (var includeProperty in includes)
+                {
+                    query = query.Include(includeProperty);
+                }
+            }
+
             return await _dbSet.FindAsync(id);
         }
 
