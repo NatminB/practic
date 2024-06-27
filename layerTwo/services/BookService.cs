@@ -23,10 +23,11 @@ namespace layerTwo.Services
             return _mapper.Map<IEnumerable<BookDTO>>(books);
         }
 
-        public async Task<bool> AddBookAsync(BookDTO bookDTO)
+        public async Task<BookDTO> AddBookAsync(BookDTO bookDTO)
         {
             var book = _mapper.Map<Book>(bookDTO);
-            return await _bookRepository.AddAsync(book);
+            var addedBook = await _bookRepository.AddAsync(book);
+            return _mapper.Map<BookDTO>(addedBook);
         }
 
         public async Task DeleteBookAsync(int bookId)

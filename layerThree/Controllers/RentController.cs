@@ -41,7 +41,8 @@ namespace layerThree.Controllers
         public async Task<ActionResult> ReturnBook(int rentId, DateTime date)
         {
             var rents = await _rentService.GetAll();
-            if (rents is null)
+            var rent = rents.FirstOrDefault(x => x.RentId == rentId);
+            if (rent is null)
             {
                 return NotFound();
             }

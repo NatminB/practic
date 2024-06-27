@@ -43,18 +43,11 @@ namespace layerOne.repositories
             return await _dbSet.FindAsync(id);
         }
 
-        public virtual async Task<bool> AddAsync(T entity)
+        public virtual async Task<T> AddAsync(T entity)
         {
-            try
-            {
-                await _dbSet.AddAsync(entity);
-                await _context.SaveChangesAsync();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
+            var addedEntity = await _dbSet.AddAsync(entity);
+            await _context.SaveChangesAsync();
+            return addedEntity.Entity;
         }
 
         public virtual async Task UpdateAsync(T entity)

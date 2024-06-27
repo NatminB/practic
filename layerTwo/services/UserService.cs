@@ -35,10 +35,11 @@ namespace layerTwo.Services
             return _mapper.Map<UserDTO>(user);
         }
 
-        public async Task<bool> AddUserAsync(UserDTO userDTO)
+        public async Task<UserDTO> AddUserAsync(UserDTO userDTO)
         {
             var user = _mapper.Map<User>(userDTO);
-            return await _userRepository.AddAsync(user);
+            var addedUser = await _userRepository.AddAsync(user);
+            return _mapper.Map<UserDTO>(addedUser);
         }
 
         public async Task DeleteUserAsync(int userId)

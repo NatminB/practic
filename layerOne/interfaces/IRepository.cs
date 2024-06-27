@@ -7,7 +7,7 @@ namespace layerOne.interfaces
     {
         Task<IEnumerable<T>> GetAllAsync(params Expression<Func<T, object>>[] includes);
         Task<T> GetByIdAsync(int id, params Expression<Func<T, object>>[] includes);
-        Task<bool> AddAsync(T entity);
+        Task<T> AddAsync(T entity);
         Task UpdateAsync(T entity);
         Task DeleteAsync(int id);
     }
