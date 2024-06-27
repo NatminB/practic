@@ -20,7 +20,7 @@ namespace layerThree.Controllers
             var users = await _userService.GetAllUsersAsync();
             return users is not null ? Ok(users) : NoContent();
         }
-        [HttpGet]
+        [HttpGet("WithRents")]
         public async Task<ActionResult<IEnumerable<UserDTO>>> GetUsersWithRents()
         {
             var users = await _userService.GetUsersWithRentsAsync();
