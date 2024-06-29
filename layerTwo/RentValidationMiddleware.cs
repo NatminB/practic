@@ -21,13 +21,15 @@ public class RentValidationMiddleware
     {
         if (context.Request.Method == "POST" && context.Request.Path.StartsWithSegments("/Rent"))
         {
-            var body = context.Request.Body;
-            context.Request.Body.Seek(0, SeekOrigin.Begin);
-            var reader = new StreamReader(body);
-            var bodyContent = await reader.ReadToEndAsync();
-            context.Request.Body.Seek(0, SeekOrigin.Begin);
+            //var body = context.Request.Body;
+            //context.Request.Body.Seek(0, SeekOrigin.Begin);
+            //var reader = new StreamReader(body);
+            //var bodyContent = await reader.ReadToEndAsync();
+            //context.Request.Body.Seek(0, SeekOrigin.Begin);
 
-            var rent = JsonConvert.DeserializeObject<Rent>(bodyContent);
+            var body = await new System.IO.StreamReader(context.Request.Body).ReadToEndAsync();
+
+            var rent = JsonConvert.DeserializeObject<Rent>(body);
 
             if (rent != null)
             {
@@ -62,7 +64,7 @@ public class RentValidationMiddleware
                         return;
                     }
 
-                    if (rent.Date < existingRent.DateOff)
+                    if (rent.Date >= existingRent.Date && rent.Date < existingRent.DateOff)
                     {
                         context.Response.StatusCode = 400;
                         await context.Response.WriteAsync("Rental periods overlap.");
