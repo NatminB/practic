@@ -22,7 +22,7 @@ namespace layerOne.repositories
             {
                 foreach (var includeProperty in includes)
                 {
-                    query = query.Include(includeProperty.ToString());
+                    query = query.Include(includeProperty);
                 }
             }
 

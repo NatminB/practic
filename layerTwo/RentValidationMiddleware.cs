@@ -19,7 +19,7 @@ public class RentValidationMiddleware
 
     public async Task InvokeAsync(HttpContext context)
     {
-        if (context.Request.Method == "POST" && context.Request.Path.StartsWithSegments("/api/Rent"))
+        if (context.Request.Method == "POST" && context.Request.Path.StartsWithSegments("/Rent"))
         {
             var body = context.Request.Body;
             context.Request.Body.Seek(0, SeekOrigin.Begin);
