@@ -64,7 +64,7 @@ public class RentValidationMiddleware
                         return;
                     }
 
-                    if (rent.Date >= existingRent.Date && rent.Date < existingRent.DateOff)
+                    if (rent.Date >= existingRent.Date || rent.Date < existingRent.DateOff)
                     {
                         context.Response.StatusCode = 400;
                         await context.Response.WriteAsync("Rental periods overlap.");
